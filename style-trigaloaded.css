@@ -1,0 +1,80 @@
+:root{
+  --bg:#0b0b0b;
+  --card:#101214;
+  --muted:#9aa4b2;
+  --blue:#3498db;
+  --red:#e74c3c;
+  --scarlet:#ff3737;
+  --glass: rgba(15,15,15,0.68);
+  --glass-blur: 8px;
+  --radius:12px;
+  --accentGrad: linear-gradient(90deg,var(--blue),var(--red));
+}
+*{box-sizing:border-box}
+body.dark{background:var(--bg);color:#e6eef6;font-family:'Poppins',sans-serif;margin:0}
+.dark-header{display:flex;align-items:center;justify-content:space-between;padding:14px 28px;background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent);backdrop-filter:blur(4px);position:sticky;top:0;z-index:120}
+.brand{display:flex;align-items:center;gap:14px}
+.logo{width:44px;height:44px;border-radius:10px;background:var(--blue);display:flex;align-items:center;justify-content:center;color:white;font-weight:700}
+.title{font-weight:700}
+.desktop-nav a{color:var(--muted);margin:0 12px;text-decoration:none;transition:color .18s}
+.desktop-nav a.active, .desktop-nav a:hover{color:white}
+.hero{padding:80px 20px;text-align:center}
+.section{max-width:1200px;margin:30px auto;padding:0 18px}
+.controls{display:flex;gap:12px;align-items:center;margin-bottom:16px}
+.controls input{padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.04);background:var(--card);color:#e6eef6}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px}
+.cardD{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border-radius:10px;padding:12px;display:flex;gap:12px;align-items:center;box-shadow:0 6px 30px rgba(0,0,0,0.6);transition:transform .22s, box-shadow .22s}
+.cardD img{width:80px;height:80px;object-fit:cover;border-radius:8px}
+.cardD:hover{transform:translateY(-6px);box-shadow:0 12px 40px rgba(52,152,219,0.08)}
+.btn{padding:8px 12px;border-radius:8px;border:none;cursor:pointer;background:transparent;color:#e6eef6}
+.btn.primary{background:var(--blue);color:#fff}
+
+/* Trigaloaded semi-transparent sticky player */
+.triga-player{
+  position:fixed;
+  left:50%;
+  transform:translateX(-50%);
+  bottom:18px;
+  display:none;
+  align-items:center;
+  gap:14px;
+  padding:10px 18px;
+  border-radius:14px;
+  width:min(1100px,94%);
+  backdrop-filter: blur(var(--glass-blur));
+  background: linear-gradient(180deg, rgba(20,20,20,0.62), rgba(10,10,10,0.48));
+  box-shadow: 0 10px 40px rgba(0,0,0,0.6);
+  z-index:999;
+}
+.triga-cover{width:64px;height:64px;border-radius:8px;object-fit:cover;box-shadow:0 8px 26px rgba(0,0,0,0.6)}
+.triga-meta{min-width:180px}
+.triga-title{font-weight:700}
+.triga-artist{color:var(--muted);font-size:0.9rem;margin-top:4px}
+.triga-controls{display:flex;gap:10px;align-items:center}
+.triga-btn{background:transparent;border:none;color:#e6eef6;font-size:18px;padding:8px 10px;border-radius:8px;cursor:pointer;box-shadow:0 6px 18px rgba(0,0,0,0.6)}
+.triga-btn:hover{transform:translateY(-4px);filter:brightness(1.05);}
+
+/* neon glow when playing */
+.triga-player.playing{box-shadow:0 10px 40px rgba(52,152,219,0.12), 0 0 40px rgba(255,55,55,0.06)}
+.triga-btn.playing{animation:btnGlow 1.8s infinite}
+@keyframes btnGlow{0%{text-shadow:0 0 6px rgba(52,152,219,0.25)}50%{text-shadow:0 0 16px rgba(255,55,55,0.25)}100%{text-shadow:0 0 6px rgba(52,152,219,0.25)}}
+
+/* equalizer */
+.triga-eq{display:flex;gap:4px;align-items:flex-end;height:28px;margin-left:6px}
+.triga-eq span{width:4px;background:linear-gradient(180deg,var(--blue),var(--scarlet));height:6px;border-radius:2px;display:block;transition:height .2s}
+.triga-eq.active span:nth-child(1){height:18px}
+.triga-eq.active span:nth-child(2){height:10px}
+.triga-eq.active span:nth-child(3){height:22px}
+.triga-eq.active span:nth-child(4){height:14px}
+
+/* progress */
+.triga-progress{flex:1;height:6px;background:rgba(255,255,255,0.03);border-radius:6px;overflow:hidden;margin-left:12px}
+.triga-progress-bar{height:100%;width:0;background:linear-gradient(90deg,var(--blue),var(--scarlet))}
+
+/* responsiveness */
+@media(max-width:700px){
+  .triga-player{left:12px;right:12px;transform:none;width:calc(100% - 24px);padding:10px}
+  .triga-cover{width:48px;height:48px}
+  .triga-meta{min-width:120px}
+  .cardD img{width:72px;height:72px}
+}
